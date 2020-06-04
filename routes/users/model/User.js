@@ -49,3 +49,5 @@ const UserSchema = mongoose.Schema({
 
 
 })
+
+module.export = mongoose.model("User",UserSchema)
