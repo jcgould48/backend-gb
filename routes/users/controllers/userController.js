@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const User = require('../model/User')
 const getErrorMessage = require('../authHelpers/dbErrorHelper')
-const {comparePassword,createJwtToken} = require('../authHelpers/jwtHelper')
+const {comparePassword,createJwtToken} = require('../authHelpers/jwtGenerators')
 
 module.exports={
 
