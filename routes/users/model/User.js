@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
         type:String,
         trim:true,
         required:'username is unique',
-        //unique:'Username already exists,please choose another'
+        unique:'Username already exists,please choose another'
         
     },
     email:{
