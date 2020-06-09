@@ -1,6 +1,6 @@
 const User = require('../model/User')
 const bcrypt = require('bcryptjs')
-const now = moment()
+
 const getErrorMessage = require('../authHelpers/dbErrorHelper')
 const {comparePassword,createJwtToken} = require('../authHelpers/jwtGenerators')
 
