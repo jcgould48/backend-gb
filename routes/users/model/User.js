@@ -7,7 +7,7 @@ const UserSchema = mongoose.Schema({
         type:String,
         trim:true,
         required:'username is unique',
-        unique:'Username already exists,please choose another'
+        //unique:'Username already exists,please choose another'
         
     },
     email:{
@@ -27,12 +27,12 @@ const UserSchema = mongoose.Schema({
     city:{
         type:String,
         trim:true,
-        match:[/^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/g,"no special characters"]
+        //match:[/^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/g,"no special characters"]
     },
     state:{
         type:String,
         trim:true,
-        match:[/^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/g,"no special characters"]
+       // match:[/^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/g,"no special characters"]
     },
     userCreated:{
         type:String,
@@ -49,3 +49,9 @@ const UserSchema = mongoose.Schema({
 
 
 })
+
+
+module.exports = mongoose.model('User',UserSchema)
+
+//try again
+// if this is it im going to jump out my window 
