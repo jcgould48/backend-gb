@@ -84,5 +84,46 @@ module.exports={
             })
         }
     },
+
+    updateUser:async (req,res)=>{
+        try {
+            let foundUser = await (await User.findById({_id:req.params.id})).select('--v')
+            const {username,email,city,state}= foundUser
+            username === req.body.username?username = req.body.username:username = username
+            email === req.body.username?email = req.body.email:email = email
+            city === req.body.username?city = req.body.city:city = city
+            state === req.body.username?state = req.body.state:state = state
+
+            await foundUser.save()
+            res.json({
+                message:'success',
+                updatedUser:foundUser
+            })
+        } catch (error) {
+            console.log(e)
+            res.status(518).json({
+                
+                message:getErrorMessage(e)
+            })
+        }
+    },
+
+    deleteUser:async (req,res)=>{
+        try {
+            let foundUser = await User.findByIdAndDelete({_id:req.params.id})
+            res.clearCookie('jwt-cookie-expense')
+            res.clearCookie('jwt-cookie-refresh-expense')
+            res.json({
+                message:'user deleted'
+            })
+            res.end()
+        } catch (error) {
+            console.log(e)
+            res.status(518).json({
+                
+                message:getErrorMessage(e)
+            })
+        }
+    }
     
 }

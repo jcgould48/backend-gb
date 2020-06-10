@@ -10,4 +10,7 @@ router.get('/', function(req, res, next) {
 router.post('/login',userController.login)
 router.get('/logout',userController.logout)
 router.post('/create-user',userController.createUser)
+router.put('/update-user/:id',userController.updateUser)
+router.put('/delete-user/:id',userController.deleteUser)
+
 module.exports = router;
