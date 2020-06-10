@@ -39,13 +39,7 @@ const UserSchema = mongoose.Schema({
         default:now.format('dddd,MMMM Do YYY,h:mm:ss a')
     },
     
-    wins:{
-        type:Array,
-    },
-
-    losses:{
-        type:Array,
-    },
+    
 
 
 })
