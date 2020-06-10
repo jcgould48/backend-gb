@@ -1,4 +1,5 @@
 const User = require('../model/User')
+const Score = require('../../scores/model/Score')
 const bcrypt = require('bcryptjs')
 
 const getErrorMessage = require('../authHelpers/dbErrorHelper')
@@ -65,10 +66,18 @@ module.exports={
             let hashedPassword = await bcrypt.hash(createdUser.password,genSalt)
 
             createdUser.password = hashedPassword
-            console.log("-----",createdUser);
+            // console.log("-----",createdUser);
             
 
             await createdUser.save()
+
+            let newScore = await new Score()
+            console.log("-----",createdUser);
+            console.log("###",createdUser._id);
+            newScore.wins = 0
+            newScore.losses = 0
+            newScore.owner= createdUser._id
+            await newScore.save()
 
             res.json({
                 message:"user created"
@@ -91,8 +100,8 @@ module.exports={
             const {username,email,city,state}= foundUser
             username === req.body.username?username = req.body.username:username = username
             email === req.body.username?email = req.body.email:email = email
-            city === req.body.username?city = req.body.city:city = city
-            state === req.body.username?state = req.body.state:state = state
+            city === req.body.city?city = req.body.city:city = city
+            state === req.body.state?state = req.body.state:state = state
 
             await foundUser.save()
             res.json({
