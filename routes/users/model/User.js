@@ -38,6 +38,7 @@ const UserSchema = mongoose.Schema({
         type:String,
         default:now.format('dddd,MMMM Do YYY,h:mm:ss a')
     },
+    scores: [{ type: mongoose.Schema.ObjectId, ref: "Score" }]
     
 })
 

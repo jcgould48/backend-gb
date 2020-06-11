@@ -1,16 +1,18 @@
 const Score = require('../model/Score')
 
-const getErrorMessage = require('../../users/authHelpers/dbErrorHelper')
+const dbErrorHelper = require('../../users/authHelpers/dbErrorHelper')
 
 module.exports={
 
     getScores: async (req, res) => {
         try {
           let userID = req.auth._id;
+          console.log("userid!!!!!!",userID)
           let foundScores = await Score.findById({ owner: userID })
-            .populate("Score") //Probablly need to edit these two lines
-            .select("-__v -password -userCreated");
-          res.json(foundAllExpenses);
+            .populate("scores") //Probablly need to edit these two lines
+            .select("-__v -wins -loses -_id");
+            console.log("foundscores--------", foundScores)
+          res.json(foundScores);
         } catch (e) {
           res.status(500).json(dbErrorHelper(e));
         }

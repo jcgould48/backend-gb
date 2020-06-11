@@ -8,8 +8,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/find-score/:id', scoreController.getScores)
-router.post('/update-score/:id',scoreController.updateScore)
-router.delete('/reset-score/:id',scoreController.resetScore)
+router.put('/update-score/:id',scoreController.updateScore)
+router.put('/reset-score/:id',scoreController.resetScore)
 
 
 module.exports = router;
