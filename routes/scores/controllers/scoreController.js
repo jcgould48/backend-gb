@@ -6,14 +6,15 @@ module.exports={
 
     getScores: async (req, res) => {
         try {
-          let userID = req.auth._id;
-          console.log("userid!!!!!!",userID)
-          let foundScores = await Score.findById({ owner: userID })
+        //   let userID = req.auth._id;
+          console.log("userid!!!!!!",req.params.id)
+          let foundScores = await Score.findOne({ owner: req.params.id })
             .populate("scores") //Probablly need to edit these two lines
-            .select("-__v -wins -loses -_id");
+            // .select("-__v -wins -loses -_id");
             console.log("foundscores--------", foundScores)
           res.json(foundScores);
         } catch (e) {
+            console.log(e)
           res.status(500).json(dbErrorHelper(e));
         }
       },
