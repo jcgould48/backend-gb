@@ -6,11 +6,9 @@ module.exports={
 
     getScores: async (req, res) => {
         try {
-        //   let userID = req.auth._id;
           console.log("userid!!!!!!",req.params.id)
           let foundScores = await Score.findOne({ owner: req.params.id })
-            .populate("scores") //Probablly need to edit these two lines
-            // .select("-__v -wins -loses -_id");
+            .populate("scores")
             console.log("foundscores--------", foundScores)
           res.json(foundScores);
         } catch (e) {
@@ -21,34 +19,17 @@ module.exports={
 
     updateScore:async (req,res)=>{
         try {
-
             console.log("userID",req.params.id)
-            let updatedExpense = await Expense.findByIdAndUpdate(
-                {
-                  owner: req.params.id,
-                },
+            let foundScore = await Score.findOne({ owner: req.params.id })
+           
+            let updatedScore = await Score.findByIdAndUpdate({_id:foundScore._id}, 
                 req.body,
-                { new: true }
-              );
-              res.json(updatedExpense);
-              console.log(updatedExpense);
-    //   let foundAllExpenses = await User.findById({ _id: userID })
-    //     .populate("expenses")
-    //     .select("-__v -password -userCreated");
-    //   res.json(foundAllExpenses);
-
-            // let foundUser = await (await Score.findById({_id:req.params.id})).select('--v')
-            // const {wins,losses}= foundUser
-            // wins === req.body.wins?wins = req.body.wins:wins= wins
-            // losses === req.body.losses?losses= req.body.email:losses = losses
+                { new: true })
+                
+              
+              res.json(updatedScore);
             
-
-            // await foundUser.save()
-            // res.json({
-            //     message:'success',
-            //     updatedUser:foundUser
-            // })
-        } catch (error) {
+        } catch (e) {
             console.log(e)
             res.status(518).json({
                 
