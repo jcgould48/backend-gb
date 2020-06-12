@@ -14,7 +14,8 @@ router.get('/find-score/:id',
 //   jwtHelper.hasAuthorization,
   scoreController.getScores)
 
-router.put('/update-score/:id',scoreController.updateScore)
+router.put('/update-score/:id', scoreController.updateScore )
+
 router.put('/reset-score/:id',scoreController.resetScore)
 
 

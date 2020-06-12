@@ -21,17 +21,33 @@ module.exports={
 
     updateScore:async (req,res)=>{
         try {
-            let foundUser = await (await Score.findById({_id:req.params.id})).select('--v')
-            const {wins,losses}= foundUser
-            wins === req.body.wins?wins = req.body.wins:wins= wins
-            losses === req.body.losses?losses= req.body.email:losses = losses
+
+            console.log("userID",req.params.id)
+            let updatedExpense = await Expense.findByIdAndUpdate(
+                {
+                  owner: req.params.id,
+                },
+                req.body,
+                { new: true }
+              );
+              res.json(updatedExpense);
+              console.log(updatedExpense);
+    //   let foundAllExpenses = await User.findById({ _id: userID })
+    //     .populate("expenses")
+    //     .select("-__v -password -userCreated");
+    //   res.json(foundAllExpenses);
+
+            // let foundUser = await (await Score.findById({_id:req.params.id})).select('--v')
+            // const {wins,losses}= foundUser
+            // wins === req.body.wins?wins = req.body.wins:wins= wins
+            // losses === req.body.losses?losses= req.body.email:losses = losses
             
 
-            await foundUser.save()
-            res.json({
-                message:'success',
-                updatedUser:foundUser
-            })
+            // await foundUser.save()
+            // res.json({
+            //     message:'success',
+            //     updatedUser:foundUser
+            // })
         } catch (error) {
             console.log(e)
             res.status(518).json({
